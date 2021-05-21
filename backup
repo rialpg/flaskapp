@@ -1,0 +1,19 @@
+# Use python 3.7.9-stretch image container
+FROM python:3.7.9-stretch
+
+# Set working directory to this app
+WORKDIR /app
+
+# copy and install the requirements
+COPY /requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the current directory contents into the container
+COPY . /app
+
+# set port
+EXPOSE 5000
+
+# run the command to start the app
+ENTRYPOINT [ "python3" ]
+CMD [ "run.py" ]
